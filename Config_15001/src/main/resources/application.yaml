@@ -1,0 +1,30 @@
+server:
+  port: 15001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh
+spring:
+  application:
+    name: config
+  rabbitmq:
+    stream:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yixiaotuolanni/config.git
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    service-url:
+      defaultZone : "http://eureka10000:10000/eureka,http://eureka10001:10001/eureka"
