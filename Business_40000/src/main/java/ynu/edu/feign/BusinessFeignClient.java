@@ -13,9 +13,9 @@ import java.util.List;
 @FeignClient(name = "data-read")
 public interface BusinessFeignClient {
     @GetMapping("/dataread/business/listBusiness")
-    public List<Business> listBusiness();
+    List<Business> listBusiness();
     @GetMapping("/dataread/business/listBusinessByOrderTypeId")
-    public List<Business> listBusinessByOrderTypeId(@RequestParam("orderTypeId") Integer orderTypeId);
+    List<Business> listBusinessByOrderTypeId(@RequestParam("orderTypeId") Integer orderTypeId);
     @GetMapping("/dataread/business/getBusinessById")
-    public Business getBusinessById(@RequestParam("businessId") Integer businessId);
+    Business getBusinessById(@RequestParam("businessId") Integer businessId);
 }

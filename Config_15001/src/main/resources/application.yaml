@@ -18,7 +18,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/yixiaotuolanni/config.git
+          uri: https://github.com/yixiaotuolanni/ConfigForElm.git
 eureka:
   instance:
     prefer-ip-address: true
