@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/DeliverAddressController")
+@RequestMapping("/deliveraddress")
 public class DeliverAddressController {
     @Resource
     IDeliveryAddressService iDeliverAddressService;

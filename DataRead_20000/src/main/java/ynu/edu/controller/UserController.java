@@ -6,7 +6,7 @@ import ynu.edu.pojo.User;
 import ynu.edu.service.IUserService;
 
 @RestController
-@RequestMapping(value = "/UserController")
+@RequestMapping(value = "/user")
 @CrossOrigin
 public class UserController {
     @Resource
@@ -16,15 +16,14 @@ public class UserController {
         return userService.saveUser(user);
     }
     @PostMapping("/getUserById")
-    public User getUserById(@RequestParam String userId) {
+    public User getUserById(@RequestParam("userId") String userId) {
         return userService.getUserById(userId);
     }
     @PostMapping("/logIn")
-    public String logIn(@RequestParam String userId,@RequestParam String password) {
-        if (userService.getUserByIdByPass(userId,password) == null){
-            return null;
-        }
-        return null;
+    public User logIn(@RequestParam("userId") String userId,
+                        @RequestParam("password") String password) {
+        User user = userService.getUserByIdByPass(userId, password);
+        return user;
     }
     @PostMapping(value = "/updatePwd")
     public Boolean updatePwd(@RequestParam String id,
