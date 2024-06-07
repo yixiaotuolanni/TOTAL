@@ -17,6 +17,10 @@
         <module>Gateway_30000</module>
         <module>Business_40000</module>
         <module>Food_41000</module>
+        <module>User_42000</module>
+        <module>Cart_43000</module>
+        <module>DeliveryAddresss_44000</module>
+        <module>Auth_39000</module>
     </modules>
 
     <properties>
