@@ -24,10 +24,22 @@ spring:
           uri: lb://business
           predicates:
             - Path=/business/**
-        - id: food
-          uri: lb://food
+        - id: cart
+          uri: lb://cart
           predicates:
-            - Path=/food/**
+            - Path=/cart/**
+        - id: delivery-address
+          uri: lb://delivery-address
+          predicates:
+            - Path=/delivery-address/**
+        - id: orders
+          uri: lb://orders
+          predicates:
+            - Path=/orders/**
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/user/**
 #          filters:
 #            - name: CircuitBreaker
 #              args:
