@@ -2,24 +2,25 @@ package ynu.edu.controller;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import ynu.edu.feign.DelievryAddressFeignClient;
 import ynu.edu.pojo.DeliveryAddress;
-import ynu.edu.service.IDeliveryAddressService;
+
 import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/deliveryaddress")
-public class DeliverAddressController {
+@RequestMapping(value = "/deliveryaddress")
+public class DeliveryAddressController {
     @Resource
-    IDeliveryAddressService iDeliverAddressService;
+    DelievryAddressFeignClient deliveryAddressFeignClient;
 
     @PostMapping("/listDeliveryAddressByUserId")
     List<DeliveryAddress> listDeliveryAddressByUserId(@RequestParam("userId") String userId){
-        return iDeliverAddressService.listDeliveryAddressByUserId(userId);
+        return deliveryAddressFeignClient.listDeliveryAddressByUserId(userId);
     }
     @PostMapping("/getDeliveryAddressById")
     DeliveryAddress getDeliveryAddressById(@RequestParam("daId") Integer daId){
-        return iDeliverAddressService.getDeliveryAddressById(daId);
+        return deliveryAddressFeignClient.getDeliveryAddressById(daId);
     }
     @PostMapping("/saveDeliveryAddress")
     int saveDeliveryAddress(@RequestParam("contactName") String contactName,
@@ -27,7 +28,7 @@ public class DeliverAddressController {
                             @RequestParam("contactTel") String contactTel,
                             @RequestParam("address") String address,
                             @RequestParam("userId") String userId){
-        return iDeliverAddressService.saveDeliveryAddress(contactName,contactSex,contactTel,address,userId);
+        return deliveryAddressFeignClient.saveDeliveryAddress(contactName,contactSex,contactTel,address,userId);
     }
 
     @PostMapping("/updateDeliveryAddress")
@@ -37,12 +38,13 @@ public class DeliverAddressController {
                               @RequestParam("contactTel") String contactTel,
                               @RequestParam("address") String address,
                               @RequestParam("userId") String userId){
-        return iDeliverAddressService.updateDeliveryAddress(daId,contactName,contactSex,contactTel,address,userId);
+        return deliveryAddressFeignClient.updateDeliveryAddress(daId,contactName,contactSex,contactTel,address,userId);
     }
 
     @PostMapping("/removeDeliveryAddress")
     int removeDeliveryAddress(@RequestParam("daId") Integer daId){
-        return iDeliverAddressService.removeDeliveryAddress(daId);
+        return deliveryAddressFeignClient.removeDeliveryAddress(daId);
     }
+
 
 }

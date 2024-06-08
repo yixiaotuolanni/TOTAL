@@ -22,11 +22,11 @@ public class BusinessController {
         return businessFeignClient.listBusiness();
     }
     @GetMapping("/listBusinessByOrderTypeId")
-    public List<Business> listBusinessByOrderTypeId(@RequestParam Integer orderTypeId){
+    public List<Business> listBusinessByOrderTypeId(@RequestParam("orderTypeId") Integer orderTypeId){
         return businessFeignClient.listBusinessByOrderTypeId(orderTypeId);
     }
-    @GetMapping("/getBusinessById")
-    public Business getBusinessById(@RequestParam Integer businessId){
+    @GetMapping("/listBusinessById")
+    public Business getBusinessById(@RequestParam("businessId") Integer businessId){
         return businessFeignClient.getBusinessById(businessId);
     }
 

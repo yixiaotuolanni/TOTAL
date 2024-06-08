@@ -20,12 +20,12 @@ public class BusinessController {
 
 //    功能：根据点餐分类编号查询所属商家信息
     @GetMapping("/listBusinessByOrderTypeId")
-    public List<Business> listBusinessByOrderTypeId(@RequestParam Integer orderTypeId){
+    public List<Business> listBusinessByOrderTypeId(@RequestParam("orderTypeId") Integer orderTypeId){
         return iBusinessService.listBusinessByOrderTypeId(orderTypeId);
     }
 
     @GetMapping("/getBusinessById")
-    public Business getBusinessById(@RequestParam Integer businessId){
+    public Business getBusinessById(@RequestParam("businessId") Integer businessId){
         return iBusinessService.getBusinessById(businessId);
     }
 

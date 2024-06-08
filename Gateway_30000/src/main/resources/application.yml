@@ -28,10 +28,14 @@ spring:
           uri: lb://cart
           predicates:
             - Path=/cart/**
+        - id: food
+          uri: lb://food
+          predicates:
+            - Path=/food/**
         - id: delivery-address
           uri: lb://delivery-address
           predicates:
-            - Path=/delivery-address/**
+            - Path=/deliveryaddress/**
         - id: orders
           uri: lb://orders
           predicates:
@@ -59,6 +63,9 @@ spring:
               - DELETE
 #            允许所有的请求头。
             allowedHeaders: "*"
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 eureka:
   instance:
     prefer-ip-address: true

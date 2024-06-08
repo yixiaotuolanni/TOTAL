@@ -1,7 +1,7 @@
-package ynu.edu.controller;
+package edu.controller;
 
-import ynu.edu.pojo.Orders;
-import ynu.edu.service.IOrdersService;
+import edu.feign.OrdersFeignClient;
+import edu.pojo.Orders;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,24 +12,24 @@ import java.util.List;
 @RestController
 public class OrdersController {
     @Resource
-    IOrdersService iOrdersService;
+    OrdersFeignClient ordersFeignClient;
     @PostMapping("/createOrders")
     int createOrders(@RequestParam("userId") String userId,
                      @RequestParam("businessId") Integer businessId,
                      @RequestParam("daId") Integer daId,
                      @RequestParam("orderTotal") Double orderTotal){
-        return iOrdersService.createOrders(userId, businessId, daId, orderTotal);
+        return ordersFeignClient.createOrders(userId, businessId, daId, orderTotal);
     }
     @PostMapping("/getOrdersById")
     Orders getOrdersById(@RequestParam("orderId") Integer orderId){
-        return iOrdersService.getOrdersById(orderId);
+        return ordersFeignClient.getOrdersById(orderId);
     }
     @PostMapping("/listOrdersByUserId")
     List<Orders> listOrdersByUserId(@RequestParam("userId") String userId){
-        return iOrdersService.listOrdersByUserId(userId);
+        return ordersFeignClient.listOrdersByUserId(userId);
     }
     @PostMapping("/payment")
     int payment(@RequestParam("orderId") int orderId){
-        return iOrdersService.payment(orderId);
+        return ordersFeignClient.payment(orderId);
     }
 }

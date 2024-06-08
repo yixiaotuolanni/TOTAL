@@ -44,6 +44,9 @@ public class CartServiceImpl implements ICartService {
         if (user == null || business == null || food == null){
             return 0;
         }
+        if (iCartDao.findCartsByUser_UserIdAndBusiness_BusinessIdAndFood_FoodId(userId,businessId,foodId) != null){
+            return 0;
+        }
         Cart cart = new Cart();
         cart.setBusiness(business);
         cart.setFood(food);
@@ -63,6 +66,13 @@ public class CartServiceImpl implements ICartService {
     public int removeCart(String userId,
                               Integer businessId,
                               Integer foodId){
-        return iCartDao.removeCart(userId, businessId, foodId);
+        Cart cart = iCartDao.findCartsByUser_UserIdAndBusiness_BusinessIdAndFood_FoodId(userId,businessId,foodId);
+        try {
+            iCartDao.delete(cart);
+            return 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

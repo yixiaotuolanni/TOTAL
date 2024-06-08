@@ -21,6 +21,8 @@
         <module>Cart_43000</module>
         <module>DeliveryAddresss_44000</module>
         <module>Auth_39000</module>
+        <module>Orders_38000</module>
+        <module>Cart_43001</module>
     </modules>
 
     <properties>

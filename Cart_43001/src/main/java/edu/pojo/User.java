@@ -1,55 +1,25 @@
-package ynu.edu.pojo;
+package edu.pojo;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class User {
-    @Id
-    @Column(nullable = false, length = 20)
     private String userId;
 
-    @Column(nullable = false, length = 20)
     private String password;
 
-    @Column(nullable = false, length = 20)
     private String userName;
 
-    @Column(nullable = false, columnDefinition = "int default 1")
     private Integer userSex;
 
     private String userImg;
-
-    @JsonIgnore
-    @Column(nullable = false,columnDefinition = "int default 1")
     private Integer delTag;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "user",
-            orphanRemoval = true
-    )
-    @JsonIgnore
     private List<Cart> carts = new ArrayList<>();
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "user"
-    )
-    @JsonIgnore
     private List<Orders> orders = new ArrayList<>();
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "user",
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
-    @JsonIgnore
     private List<DeliveryAddress> deliverAddresses = new ArrayList<>();
 
     public void addCarts(Cart cart){

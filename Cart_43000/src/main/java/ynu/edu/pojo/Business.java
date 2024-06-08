@@ -1,56 +1,28 @@
 package ynu.edu.pojo;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class Business {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer businessId;
 
-    @Column(nullable = false, length = 40)
     private String businessName;
 
-    @Column(length = 50)
     private String businessAddress;
 
-    @Column(length = 40)
     private String businessExplain;
 
-
-    @Column(columnDefinition = "mediumtext")
     private String businessImg;
 
-    @Column(nullable = false)
     private Integer orderTypeId;
 
-    @Column(columnDefinition = "decimal(5,2) DEFAULT 0.00")
     private Double starPrice;
 
-    @Column(columnDefinition = "decimal(5,2) DEFAULT 0.00")
     private Double deliveryPrice;
 
-    @Column(length = 40)
     private String remarks;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "business",
-            fetch = FetchType.LAZY
-    )
-    @JsonIgnore
     private List<Food> foods = new ArrayList<>();
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "business",
-            fetch = FetchType.LAZY
-    )
-    @JsonIgnore
     private List<Orders> orders = new ArrayList<>();
 
     public void addFood(Food food){
