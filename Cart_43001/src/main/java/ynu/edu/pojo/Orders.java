@@ -1,4 +1,4 @@
-package edu.pojo;
+package ynu.edu.pojo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

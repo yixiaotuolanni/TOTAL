@@ -1,4 +1,4 @@
-package edu.pojo;
+package ynu.edu.pojo;
 
 public class Cart {
     private Integer cartId;

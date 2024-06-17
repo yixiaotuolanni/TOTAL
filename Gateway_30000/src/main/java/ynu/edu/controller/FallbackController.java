@@ -1,22 +1,30 @@
 package ynu.edu.controller;
 
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/fallback")
 public class FallbackController {
     @RequestMapping("/business")
-    public Mono<String> business(ServerHttpRequest request, ServerHttpResponse response) {
-        return Mono.just("用户服务正忙，请稍后再试");
+    public Mono<Void> business(ServerHttpRequest request, ServerHttpResponse response) {
+        response.setStatusCode(HttpStatusCode.valueOf(504));
+        String responseBody = "business服务正忙，请稍后再试";
+        DataBuffer dataBuffer = response.bufferFactory().wrap(responseBody.getBytes(StandardCharsets.UTF_8));
+
+        return response.writeWith(Mono.just(dataBuffer));
     }
     @RequestMapping("/cart")
-    public Mono<String> cart(ServerHttpRequest request, ServerHttpResponse response) {
-        return Mono.just("购物车服务正忙，请稍后再试");
+    public Mono<ServerHttpResponse> cart(ServerHttpRequest request, ServerHttpResponse response) {
+        response.setStatusCode(HttpStatusCode.valueOf(406));
+        return Mono.just(response);
     }
     @RequestMapping("/delivery-address")
     public Mono<String> deliveryAddress(ServerHttpRequest request, ServerHttpResponse response) {

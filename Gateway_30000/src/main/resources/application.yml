@@ -24,6 +24,11 @@ spring:
           uri: lb://business
           predicates:
             - Path=/business/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: circuitBreakerA
+                fallbackUri: forward:/fallback/business
         - id: cart
           uri: lb://cart
           predicates:
@@ -44,11 +49,7 @@ spring:
           uri: lb://user
           predicates:
             - Path=/user/**
-#          filters:
-#            - name: CircuitBreaker
-#              args:
-#                name: circuitBreakerA
-#                fallbackUri: forward:/fallback/business
+
       globalcors:
 #        配置全局 CORS 策略，[/**] 表示应用于所有路径的请求。
         corsConfigurations:

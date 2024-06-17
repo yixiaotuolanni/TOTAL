@@ -18,7 +18,8 @@ public class BusinessController {
         return "接口可以正常调用";
     }
     @GetMapping("/listBusiness")
-    public List<Business> listBusiness(){
+    public List<Business> listBusiness() throws InterruptedException {
+        Thread.sleep(4_000L);
         return businessFeignClient.listBusiness();
     }
     @GetMapping("/listBusinessByOrderTypeId")
